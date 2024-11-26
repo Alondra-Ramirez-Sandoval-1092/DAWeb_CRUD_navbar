@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+{% load static %}
+
+    <div class="row"> <!-- la fila -->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- columna izquierda -->
+    <h1> EDITAR </h1>
+    <div class="card"> <!-- la tarjeta -->
+        <div class="card-body">
+        <form action="registrarDoctor/" method= "POST"> {% csrf_token %} <!-- falta action -->
+            <div class="form-group py-2">
+            <input type="text" id="skzid_doctor" name="skzid_doctor" class="form-control" placeholder="id doctor" minlenght="1" maxlenght="6" required>
+            </div>
+            <div class="form-group py-2">
+            <input type="text" id="skzid_especialidad" name="skzid_especialidad" class="form-control" placeholder="id especialidad" minlenght="1" maxlenght="6" required>
+            </div> 
+            <div class="form-group py-2">
+            <input type="text" id="skzid_consultorio" name="skzid_consultorio" class="form-control" placeholder="id consultorio" minlenght="1" maxlenght="6" required>
+            </div>
+            <div class="form-group py-2">
+            <input type="text" id="skznombre" name="skznombre" class="form-control" placeholder="Nombre Doctor" maxlenght="100" required>
+            </div>
+            <div class="form-group py-2">
+            <input type="text" id="skztel" name="skztel" class="form-control" placeholder="Telefono Doctor" minlenght="1" maxlenght="15" required>
+            </div>
+            <div class="form-group py-2">
+            <input type="text" id="skzcorreo" name="skzcorreo" class="form-control" placeholder="Doctor Correo" minlenght="1" maxlenght="40" required>
+            </div>
+            <div class="form-group py-2">
+            <input type="text" id="skzhorario" name="skzhorario" class="form-control" placeholder="Horario Consultorio" minlenght="1" maxlenght="12" required>
+            </div>
+            <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+
+        </form>
+    </div>
+    </div> <!-- la tarjeta -->
+    </div> <!-- columna izquierda -->
+
+    <!-- la fila --> 
+    
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8 "> <!-- columna derecha -->
+        <h1> Lista de Doctor </h1>
+        <img class="w-50" src="{% static 'img/doctor.jpg' %}" alt="alondra" width="100" height="200">
+        <br> 
+        <br>
+        <!-- tablaaa-->
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">id_doctor</th>
+                <th scope="col">id_especialidad</th>
+                <th scope="col">id_consultorio</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Horario</th>
+                <th> Opciones </th>
+            </tr>
+            </thead>
+            <tbody>
+        {% for m in midoctor %}
+        <tr> 
+            <td> 
+                {{forloop.counter}}
+            </td> 
+            <td> {{m.id_doctor}} </td>
+            <td> {{m.id_especialidad}} </td>
+            <td> {{m.id_consultorio}} </td>
+            <td> {{m.nombre}} </td>
+            <td> {{m.telefono}} </td>
+            <td> {{m.correo}} </td>
+            <td> {{m.horario}} </td>
+            <td> <a href="seleccionarDoctor/{{m.id_doctor}}" class="btn btn-info">Editar</a></td> 
+            <td> <a href="borrarDoctor/{{m.id_doctor}}" class="btn btn-danger">Borrar</a></td> 
+        </tr>
+
+        {% endfor %}
+            </tbody>
+        </table>
+        <!-- tablaaa-->
+    <div > <!-- columna derecha--> 
+    </div>   
+{% endblock %}
