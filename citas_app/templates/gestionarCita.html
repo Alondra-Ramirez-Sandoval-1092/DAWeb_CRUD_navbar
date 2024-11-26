@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+{% load static %}
+    <div class="row"> <!-- la fila -->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- columna izquierda -->
+    <h1> EDITAR </h1>
+    <div class="card"> <!-- la tarjeta -->
+        <div class="card-body">
+        <form action="registrarCita/" method= "POST"> {% csrf_token %} <!-- falta action -->
+            <div class="form-group py-2">
+            <input type="text" id="skzid_cita" name="skzid_cita" class="form-control" placeholder="id Cita" minlenght="1" maxlenght="6" required>
+            </div>
+            <div class="form-group py-2">
+            <input type="text" id="skzid_empleado" name="skzid_empleado" class="form-control" placeholder="id Empleado" minlenght="1" maxlenght="6" required>
+            </div>
+            <div class="form-group py-2">
+            <input type="text" id="skzid_paciente" name="skzid_paciente" class="form-control" placeholder="id Paciente" minlenght="1" maxlenght="6" required>
+            </div>
+            <div class="form-group py-2">
+            <input type="text" id="skznombre" name="skznombre" class="form-control" placeholder="Nombre Paciente" maxlenght="100" required>
+            </div>
+      <!-- <div class="form-group py-2">
+            <input type="datetime-local" id="skzfecha_reg" name="skzfecha_reg" class="form-control" placeholder="Fecha Registro" minlenght="1" maxlenght="15" required>
+            </div> -->
+            <div class="form-group py-2">
+            <input type="date" id="skzfecha_at" name="skzfecha_at" class="form-control" placeholder="Fecha Cita" required>
+            </div>
+            <div class="form-group py-2">
+            <input type="text" id="skzdescripcion" name="skzdescripcion" class="form-control" placeholder="Descripcion Cita" minlenght="1" maxlenght="150" required>
+            </div>
+            <div class="form-group py-2">
+            <input type="number" id="skzcosto" name="skzcosto" class="form-control" placeholder="Costo Cita " maxlenght="7" required>
+            </div>
+            <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+
+        </form>
+    </div>
+    </div> <!-- la tarjeta -->
+    </div> <!-- columna izquierda -->
+
+    <!-- la fila --> 
+    
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8 "> <!-- columna derecha -->
+        <h1> Lista de Cita </h1>
+        <img class="w-50" src="{% static 'img/cita.jpg' %}" alt="alondra" width="100" height="200">
+        <br> 
+        <br>
+        <!-- tablaaa-->
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">id_cita</th>
+                <th scope="col">id_empleado</th>
+                <th scope="col">id_paciente</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Fecha Registro</th>
+                <th scope="col">Fecha Atencion</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Costo</th>
+                <th> Opciones </th>
+            </tr>
+            </thead>
+            <tbody>
+        {% for m in micita %}
+        <tr> 
+            <td> 
+                {{forloop.counter}}
+            </td> 
+            <td> {{m.id_cita}} </td>
+            <td> {{m.id_empleado}} </td>
+            <td> {{m.id_paciente}} </td>
+            <td> {{m.nombre}} </td>
+            <td> {{m.fecha_reg}} </td>
+            <td> {{m.fecha_at}} </td>
+            <td> {{m.descripcion}} </td>
+            <td> {{m.costo}} </td>
+            <td> <a href="seleccionarCita/{{m.id_cita}}" class="btn btn-info">Editar</a></td> 
+            <td> <a href="borrarCita/{{m.id_cita}}" class="btn btn-danger">Borrar</a></td> 
+        </tr>
+
+        {% endfor %}
+            </tbody>
+        </table>
+        <!-- tablaaa-->
+    <div > <!-- columna derecha--> 
+    </div>   
+{% endblock %}
