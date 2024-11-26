@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!-- fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Empleado</h2>
+    <!-- Aqui codigo tarjeta -->
+    <div class="card"> <!-- la tarjeta -->
+        <div class="card-body">
+            <form action="/editarEmpleado/" method= "POST"> {% csrf_token %} <!-- falta action -->
+                <div class="form-group py-2">
+                    <input type="text" id="skzid_empleado" name="skzid_empleado" class="form-control" value="{{miempleado.id_empleado}}" minlenght="1" maxlenght="6" readonly required>
+                    </div> 
+                    <div class="form-group py-2">
+                    <input type="text" id="skzid_especialidad" name="skzid_especialidad" class="form-control" value="{{miempleado.id_especialidad}}" minlenght="1" maxlenght="6" readonly required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="text" id="skznombre" name="skznombre" class="form-control" value="{{miempleado.nombre}}" maxlenght="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="text" id="skztel" name="skztel" class="form-control"value="{{miempleado.telefono}}" minlenght="1" maxlenght="15" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="text" id="skzpuesto" name="skzpuesto" class="form-control"value="{{miempleado.puesto}}" minlenght="1" maxlenght="15" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="text" id="skzcorreo" name="skzcorreo" class="form-control" value="{{miempleado.correo}}" minlenght="1" maxlenght="40" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="text" id="skzhorario" name="skzhorario" class="form-control" value="{{miempleado.horario}}" minlenght="1" maxlenght="12" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="text" id="skzsalario" name="skzsalario" class="form-control" value="{{miempleado.salario}}" minlenght="1" maxlenght="12" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button></div>
+            
+            </form>
+        </div>
+    </div> <!-- la tarjeta -->
+    
+    <!-- Aqui codigo tarjeta -->
+    </div>
+
+</div><!-- fila en editar-->
+
+{% endblock %}

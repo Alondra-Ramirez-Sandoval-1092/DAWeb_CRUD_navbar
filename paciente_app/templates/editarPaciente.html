@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!-- fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Paciente</h2>
+    <!-- Aqui codigo tarjeta -->
+    <div class="card"> <!-- la tarjeta -->
+        <div class="card-body">
+            <form action="/editarPaciente/" method= "POST"> {% csrf_token %} <!-- falta action -->
+                <div class="form-group py-2">
+                    <input type="text" id="skzid_paciente" name="skzid_paciente" class="form-control" value="{{mipaciente.id_paciente}}" minlenght="1" maxlenght="6" readonly required>
+                    </div> 
+                    <div class="form-group py-2">
+                    <input type="text" id="skzid_empleado" name="skzid_empleado" class="form-control" value="{{mipaciente.id_empleado}}" minlenght="1" maxlenght="6" readonly required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="text" id="skznombre" name="skznombre" class="form-control" value="{{mipaciente.nombre}}" maxlenght="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="text" id="skztel" name="skztel" class="form-control"value="{{mipaciente.telefono}}" minlenght="1" maxlenght="15" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="text" id="skzcorreo" name="skzcorreo" class="form-control" value="{{mipaciente.correo}}" minlenght="1" maxlenght="40" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="text" id="skzdireccion" name="skzdireccion" class="form-control" value="{{mipaciente.direccion}}" minlenght="1" maxlenght="80" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="text" id="skztiposangre" name="skztiposangre" class="form-control" value="{{mipaciente.tiposangre}}" minlenght="1" maxlenght="12" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button></div>
+            
+            </form>
+        </div>
+    </div> <!-- la tarjeta -->
+    
+    <!-- Aqui codigo tarjeta -->
+    </div>
+
+</div><!-- fila en editar-->
+
+{% endblock %}

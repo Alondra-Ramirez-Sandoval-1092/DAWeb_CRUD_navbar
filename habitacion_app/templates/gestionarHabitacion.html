@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+{% load static %}
+    <div class="row"> <!-- la fila -->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- columna izquierda -->
+    <h1> EDITAR </h1>
+    <div class="card"> <!-- la tarjeta -->
+        <div class="card-body">
+        <form action="registrarHabitacion/" method= "POST"> {% csrf_token %} <!-- falta action -->
+            <div class="form-group py-2">
+            <input type="text" id="skzid_habitacion" name="skzid_habitacion" class="form-control" placeholder="id Habitacion" minlenght="1" maxlenght="6" required>
+            </div>
+            <div class="form-group py-2">
+            <input type="text" id="skzid_empleado" name="skzid_empleado" class="form-control" placeholder="id Empleado" minlenght="1" maxlenght="6" required>
+            </div>
+            <div class="form-group py-2">
+            <input type="text" id="skzid_paciente" name="skzid_paciente" class="form-control" placeholder="id Paciente" minlenght="1" maxlenght="6" required>
+            </div>
+            <div class="form-group py-2">
+            <input type="text" id="skznombre" name="skznombre" class="form-control" placeholder="Nombre Paciente" maxlenght="100" required>
+            </div>
+            <div class="form-group py-2">
+           <input type="text" id="skztel" name="skztel" class="form-control" placeholder="Telefono Paciente" minlenght="1" maxlenght="15" required>
+            </div> 
+            <div class="form-group py-2">
+            <input type="text" id="skzcorreo" name="skzcorreo" class="form-control" placeholder="Correo PACIENTE" minlenght="1" maxlenght="30" required>
+            </div>
+            <div class="form-group py-2">
+            <input type="date" id="skzfecha_at" name="skzfecha_at" class="form-control" placeholder="Fecha Habitacion" required>
+            </div>
+            <div class="form-group py-2">
+            <input type="number" id="skzcosto" name="skzcosto" class="form-control" placeholder="Costo Habitacion " maxlenght="7" required>
+            </div>
+            <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+
+        </form>
+    </div>
+    </div> <!-- la tarjeta -->
+    </div> <!-- columna izquierda -->
+
+    <!-- la fila --> 
+    
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8 "> <!-- columna derecha -->
+        <h1> Lista de Habitacion </h1>
+        <img class="w-50" src="{% static 'img/habitacion.jpg' %}" alt="alondra" width="100" height="200">
+        <br> 
+        <br>
+        <!-- tablaaa-->
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">id_habitacion</th>
+                <th scope="col">id_empleado</th>
+                <th scope="col">id_paciente</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Correo </th>
+                <th scope="col">Fecha Atencion</th>
+                <th scope="col">Costo</th>
+                <th> Opciones </th>
+            </tr>
+            </thead>
+            <tbody>
+        {% for m in mihabitacion %}
+        <tr> 
+            <td> 
+                {{forloop.counter}}
+            </td> 
+            <td> {{m.id_habitacion}} </td>
+            <td> {{m.id_empleado}} </td>
+            <td> {{m.id_paciente}} </td>
+            <td> {{m.nombre}} </td>
+            <td> {{m.telefono}} </td>
+            <td> {{m.correo}} </td>
+            <td> {{m.fecha_at}} </td>
+            <td> {{m.costo}} </td>
+            <td> <a href="seleccionarHabitacion/{{m.id_habitacion}}" class="btn btn-info">Editar</a></td> 
+            <td> <a href="borrarHabitacion/{{m.id_habitacion}}" class="btn btn-danger">Borrar</a></td> 
+        </tr>
+
+        {% endfor %}
+            </tbody>
+        </table>
+        <!-- tablaaa-->
+    <div > <!-- columna derecha--> 
+    </div>   
+{% endblock %}

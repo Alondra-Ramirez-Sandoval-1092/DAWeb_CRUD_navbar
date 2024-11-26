@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!-- fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Habitacion</h2>
+    <!-- Aqui codigo tarjeta -->
+    <div class="card"> <!-- la tarjeta -->
+        <div class="card-body">
+            <form action="/editarHabitacion/" method= "POST"> {% csrf_token %} <!-- falta action -->
+                <div class="form-group py-2">
+                    <input type="text" id="skzid_habitacion" name="skzid_habitacion" class="form-control" value="{{mihabitacion.id_habitacion}}" minlenght="1" maxlenght="6" readonly required>
+                    </div> 
+                    <div class="form-group py-2">
+                    <input type="text" id="skzid_empleado" name="skzid_empleado" class="form-control" value="{{mihabitacion.id_empleado}}" minlenght="1" maxlenght="6" readonly required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="text" id="skzid_paciente" name="skzid_paciente" class="form-control" value="{{mihabitacion.id_paciente}}" minlenght="1" maxlenght="6" readonly required>
+                    </div> 
+                    <div class="form-group py-2">
+                    <input type="text" id="skznombre" name="skznombre" class="form-control" value="{{mihabitacion.nombre}}" maxlenght="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="text" id="skztel" name="skztel" class="form-control"value="{{mihabitacion.telefono}}" minlenght="1" maxlenght="15" required>
+                    </div> 
+                    <div class="form-group py-2">
+                    <input type="text" id="skzcorreo" name="skzcorreo" class="form-control" value="{{mihabitacion.correo}}" minlenght="1" maxlenght="30" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="date" id="skzfecha_at" name="skzfecha_at" class="form-control" value="{{mihabitacion.fecha_at}}" >
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="number" id="skzcosto" name="skzcosto" class="form-control" value="{{mihabitacion.costo}}" maxlength="7" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button></div>
+            
+            </form>
+        </div>
+    </div> <!-- la tarjeta -->
+    
+    <!-- Aqui codigo tarjeta -->
+    </div>
+
+</div><!-- fila en editar-->
+
+{% endblock %}
